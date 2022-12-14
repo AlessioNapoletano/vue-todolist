@@ -20,13 +20,27 @@
         <h1 class="text-center">Lista della spesa</h1>
     </header>
 
-    <main>
-        <ul>
-            <li>
-                
-            </li>
-        </ul>
-    </main>
+    <div id="app">
+        <div class="conainter">
+
+
+
+            <ul>
+                <li v-for="element,index in shopListItem" :class="(element.done) ? 'line-through' : '' ">
+                    <p>
+                        {{index + 1}} - {{ element.item }}
+                    </p>
+                    <p id="delete-item" class="text-danger" @click="deleteItem(index)">
+                        X
+                    </p>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
 
 
 
