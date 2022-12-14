@@ -25,10 +25,10 @@
 
             <div id="input-item" class="mb-4">
                 <label for="add-item" class="pe-2">
-                    Aggiungi un elemento alla lista della spesa: 
+                    Aggiungi un elemento alla lista della spesa:
                 </label>
 
-                <input type="text" id="add-item" v-model="newItem">
+                <input type="text" id="add-item" v-model="newItem" @keyup.enter="addItem(newItem)">
                 <button class="btn btn-success" @click="addItem(newItem)">Aggiungi</button>
             </div>
 
@@ -36,18 +36,21 @@
                 Lista:
             </h2>
             <ul v-if="shopListItem.length > 0">
-                <li  v-for="element,index in shopListItem" :class="(element.done) ? 'line-through' : '' ">
+                <li v-for="element,index in shopListItem" :class="(element.done) ? 'line-through' : '' ">
                     <p>
-                        {{index + 1}} - {{ element.item }}
+                        {{index + 1}} -
+                    </p>
+                    <p @click="lineTrough(index)" :class="(shopListItem[index].done === true) ? 'line-through' : ''">
+                        {{ element.item }}
                     </p>
                     <p id="delete-item" class="text-danger" @click="deleteItem(index)">
                         X
                     </p>
                 </li>
-                
+
             </ul>
             <p v-else>Non ci sono elementi nella lista, aggiungili</p>
-            
+
             <button @click="deleteAllItem">Elimina tutto</button>
 
         </div>

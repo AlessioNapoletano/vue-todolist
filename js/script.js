@@ -48,12 +48,21 @@ createApp({
         },
 
         addItem(item) {
-            this.shopListItem.push({item: item, done: false});
+            this.shopListItem.push({ item: item, done: false });
             console.log(this.shopListItem)
+            this.newItem = "";
         },
 
         deleteAllItem() {
             this.shopListItem.splice(0, this.shopListItem.length);
+        },
+
+        lineTrough(index) {
+            if (this.shopListItem[index].done === false) {
+                this.shopListItem[index].done = true;
+            } else {
+                this.shopListItem[index].done = false;
+            }
         }
     }
 }).mount("#app")
