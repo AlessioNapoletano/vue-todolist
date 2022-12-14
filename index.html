@@ -11,6 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+   <!--Font Awesone-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <!--Link CSS-->
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -30,28 +33,45 @@
 
                 <input type="text" id="add-item" v-model="newItem" @keyup.enter="addItem(newItem)">
                 <button class="btn btn-success" @click="addItem(newItem)">Aggiungi</button>
+
+                <p v-if="found" class="text-danger fw-bold">elemento già presente nella lista</p>
             </div>
 
-            <h2>
-                Lista:
-            </h2>
-            <ul v-if="shopListItem.length > 0">
-                <li v-for="element,index in shopListItem" :class="(element.done) ? 'line-through' : '' ">
-                    <p>
-                        {{index + 1}} -
-                    </p>
-                    <p @click="lineTrough(index)" :class="(shopListItem[index].done === true) ? 'line-through' : ''">
-                        {{ element.item }}
-                    </p>
-                    <p id="delete-item" class="text-danger" @click="deleteItem(index)">
-                        X
-                    </p>
-                </li>
+            <div>
+                
+            </div>
+            <div id="list">
+                <h2>
+                    Lista:
+                </h2>
+                
+                <ul v-if="shopListItem.length > 0">
+                    <li 
+                    v-for="element,index in shopListItem" 
+                    :class="(element.done) ? 'line-through' : '' ">
 
-            </ul>
-            <p v-else>Non ci sono elementi nella lista, aggiungili</p>
+                        <p>
+                            {{index + 1}} -
+                        </p>
 
-            <button @click="deleteAllItem">Elimina tutto</button>
+                        <p @click="lineTrough(index)" :class="(shopListItem[index].done === true) ? 'line-through' : ''">
+                            {{ element.item }}
+                        </p>
+
+                        <div id="icon">
+                            <i @click="deleteItem(index)" class="fa-solid fa-ban text-danger pe-2"></i>
+                            <i v-if="shopListItem[index].done === true" class="fa-solid fa-check text-success"></i>
+                        </div>
+                       
+                    </li>
+    
+                </ul>
+                <p v-else>Non ci sono elementi nella lista, aggiungili</p>
+    
+                <button @click="deleteAllItem">Elimina tutto</button>
+
+            </div>
+            
 
         </div>
 

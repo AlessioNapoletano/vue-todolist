@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            found: false,
             newItem: "",
             shopListItem:
                 [
@@ -48,14 +49,14 @@ createApp({
         },
 
         addItem(item) {
-            let found = false;
+            this.found = false;
             this.shopListItem.forEach(element => {
                 if (element.item === item) {
-                    found = true;
+                    this.found = true;
                 }
             });
-            if(found === true) {
-                alert("elemento presente nella lista, non verrà aggiunto")
+            if(this.found === true) {
+               console.warn("elemento già presente nella lista")
                 
             } else {
                 this.shopListItem.push({ item: item, done: false });

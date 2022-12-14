@@ -16,6 +16,10 @@ ul li{
 }
 
 
-#delete-item {
+i {
     cursor: pointer;
+}
+
+#legend {
+    border: 2px solid black;
 }
