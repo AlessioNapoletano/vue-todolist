@@ -43,10 +43,8 @@ createApp({
 
     methods: {
         deleteItem(index) {
-
-            console.log(this.shopListItem[index])
-            this.shopListItem.slice(index, 1)
-            console.log(this.shopListItem)
+            console.log(this.shopListItem[0])
+            this.shopListItem.splice(index, 1)
         }
     }
 }).mount("#app")
