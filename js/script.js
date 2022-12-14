@@ -48,9 +48,19 @@ createApp({
         },
 
         addItem(item) {
-            this.shopListItem.push({ item: item, done: false });
-            console.log(this.shopListItem)
-            this.newItem = "";
+            let found = false;
+            this.shopListItem.forEach(element => {
+                if (element.item === item) {
+                    found = true;
+                }
+            });
+            if(found === true) {
+                alert("elemento presente nella lista, non verrà aggiunto")
+                
+            } else {
+                this.shopListItem.push({ item: item, done: false });
+            }
+            this.newItem= "";
         },
 
         deleteAllItem() {
