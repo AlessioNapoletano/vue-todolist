@@ -21,12 +21,22 @@
     </header>
 
     <div id="app">
-        <div class="conainter">
+        <div class="container">
 
+            <div id="input-item" class="mb-4">
+                <label for="add-item" class="pe-2">
+                    Aggiungi un elemento alla lista della spesa: 
+                </label>
 
+                <input type="text" id="add-item" v-model="newItem">
+                <button class="btn btn-success" @click="addItem(newItem)">Aggiungi</button>
+            </div>
 
-            <ul>
-                <li v-for="element,index in shopListItem" :class="(element.done) ? 'line-through' : '' ">
+            <h2>
+                Lista:
+            </h2>
+            <ul v-if="shopListItem.length > 0">
+                <li  v-for="element,index in shopListItem" :class="(element.done) ? 'line-through' : '' ">
                     <p>
                         {{index + 1}} - {{ element.item }}
                     </p>
@@ -34,8 +44,11 @@
                         X
                     </p>
                 </li>
-
+                
             </ul>
+            <p v-else>Non ci sono elementi nella lista, aggiungili</p>
+            
+            <button @click="deleteAllItem">Elimina tutto</button>
 
         </div>
 

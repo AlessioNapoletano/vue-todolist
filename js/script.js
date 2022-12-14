@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            newItem: "",
             shopListItem:
                 [
                     {
@@ -43,8 +44,16 @@ createApp({
 
     methods: {
         deleteItem(index) {
-            console.log(this.shopListItem[0])
             this.shopListItem.splice(index, 1)
+        },
+
+        addItem(item) {
+            this.shopListItem.push({item: item, done: false});
+            console.log(this.shopListItem)
+        },
+
+        deleteAllItem() {
+            this.shopListItem.splice(0, this.shopListItem.length);
         }
     }
 }).mount("#app")
