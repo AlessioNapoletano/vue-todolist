@@ -50,18 +50,23 @@ createApp({
 
         addItem(item) {
             this.found = false;
-            this.shopListItem.forEach(element => {
-                if (element.item === item) {
-                    this.found = true;
-                }
-            });
-            if(this.found === true) {
-               console.warn("elemento già presente nella lista")
-                
+            if (item.length <= 1) {
+                console.warn("inserisci qualcosa che abbia almneo 2 lettere")
             } else {
-                this.shopListItem.push({ item: item, done: false });
+                this.shopListItem.forEach(element => {
+                    if (element.item === item) {
+                        this.found = true;
+                    }
+                });
+                if (this.found === true) {
+                    console.warn("elemento già presente nella lista")
+
+                } else {
+                    this.shopListItem.push({ item: item, done: false });
+                }
             }
-            this.newItem= "";
+
+            this.newItem = "";
         },
 
         deleteAllItem() {
